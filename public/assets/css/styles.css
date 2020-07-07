@@ -2,6 +2,25 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: 'Montserrat' !important;
+  color: #2889eb
+}
+
+.btn {
+  background: linear-gradient(45deg, #a18ed4, #2889eb)!important;
+}
+
+.bg-dark {
+  background: linear-gradient(45deg, #a18ed4, #2889eb)!important;
+  box-shadow: 0 2px 5px rgba(128, 128, 128, 0.493);
+}
+
+h1 {
+  background: -webkit-linear-gradient(45deg, #9c84dd, #2889eb);
+  background: linear-gradient(45deg, #9c84dd, #2889eb);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .save-note {
@@ -13,6 +32,11 @@ html, body {
   margin-right: 15px;
   font-size: 1.5rem;
   cursor: pointer;
+  color: white!important;
+}
+
+.card {
+  background: linear-gradient(90deg, #288aeb15, #d7d6da38)!important;
 }
 
 .note-textarea, .note-title {
@@ -25,13 +49,14 @@ html, body {
 .note-textarea {
   resize: none;
   height: calc(100% - 63px);
-  padding-top: 15px;
+  margin-top: 5px;
+  padding: 15px;
 }
 
 .note-title {
   height: 50px;
-  margin-top: 13px;
-  font-size: 3rem;
+  margin-top: 18px;
+  font-size: calc(1.8rem + 2.2vw);
 }
 
 .note-title:read-only, .note-textarea:read-only {
@@ -67,4 +92,15 @@ html, body {
   border-right: none;
   padding: 20px;
   cursor: pointer;
+  overflow-wrap: normal;
+  overflow-x: hidden;
+}
+
+.list-group {
+  margin: 10px
+}
+
+.list-group-item {
+  margin: 5px;
+  box-shadow: 0 3px 8px rgba(128, 128, 128, 0.616);
 }
