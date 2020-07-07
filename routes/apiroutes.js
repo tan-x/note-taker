@@ -42,6 +42,7 @@ module.exports = function(app) {
       fs.writeFile('./db/db.json', JSON.stringify(noteData, null, 2), (err) => {
         if (err) throw err;
       });
+      console.log(noteData);
       res.json(noteData);
     }
   });
@@ -51,6 +52,9 @@ module.exports = function(app) {
     console.log(req.params.id);
     if(noteData) {
       noteData.splice(id, 1);
+      noteData.forEach((obj, i) => {
+        obj.id = i;
+      })
       fs.writeFile('./db/db.json', JSON.stringify(noteData, null, 2), (err) => {
         if (err) throw err;
       });
