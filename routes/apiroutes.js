@@ -11,7 +11,7 @@ var fs = require("fs");
 // ROUTING
 // ===============================================================================
 
-module.exports = (app) => {
+module.exports = function(app) {
   // API GET Requests
   // Below code handles when users "visit" a page.
   // In each of the below cases when a user visits a link
@@ -20,7 +20,6 @@ module.exports = (app) => {
 
   app.get("/api/notes", function(req, res) {
     res.json(noteData);
-
   });
 
   // API POST Requests
@@ -35,17 +34,18 @@ module.exports = (app) => {
     // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
     // It will do this by sending out the value "true" have a table
     // req.body is available since we're using the body parsing middleware
-
-    // if (tableData.length < 5) {
-    //   tableData.push(req.body);
-    //   res.json(true);
-    // }
-    // else {
-    //   waitListData.push(req.body);
-    //   res.json(false);
-    // }
-    console.log(req.body);
+    if(noteData) {
+      noteData.push(req.body);
+      fs.writeFile('./db/db.json', JSON.stringify(noteData, null, 2), (err) => {
+        if (err) throw err;
+      });
+      res.json(noteData);
+    }
   });
+
+  app.delete('/api/notes', function(req, res) {
+
+  })
 
   // ---------------------------------------------------------------------------
   // I added this below code so you could clear out the table while working with the functionality.
