@@ -36,6 +36,9 @@ module.exports = function(app) {
     // req.body is available since we're using the body parsing middleware
     if(noteData) {
       noteData.push(req.body);
+      noteData.forEach((obj, i) => {
+        obj.id = i;
+      })
       fs.writeFile('./db/db.json', JSON.stringify(noteData, null, 2), (err) => {
         if (err) throw err;
       });
@@ -43,8 +46,16 @@ module.exports = function(app) {
     }
   });
 
-  app.delete('/api/notes', function(req, res) {
-
+  app.delete('/api/notes/:id', function(req, res) {
+    var id = req.params.id;
+    console.log(req.params.id);
+    if(noteData) {
+      noteData.splice(id, 1);
+      fs.writeFile('./db/db.json', JSON.stringify(noteData, null, 2), (err) => {
+        if (err) throw err;
+      });
+      res.json(noteData);
+    }
   })
 
   // ---------------------------------------------------------------------------
